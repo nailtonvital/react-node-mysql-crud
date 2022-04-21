@@ -1,10 +1,14 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './App.css'
 import Axios from "axios";
+import Card from "./components/card";
 
 function App() {
 
+    const baseUrl = "http://localhost:3001"
+
     const [values, setValues] = useState();
+    const [games, setGames] = useState();
 
     const handleChangeValues = (value) => {
         setValues((prevValue) => ({
@@ -14,7 +18,7 @@ function App() {
     }
 
     const handleClickButton = () => {
-        Axios.post("http://localhost:3001/register", {
+        Axios.post(`${baseUrl}/register`, {
             name: values.name,
             cost: values.cost,
             category: values.category,
@@ -23,14 +27,43 @@ function App() {
         });
     }
 
+    useEffect(() => {
+        Axios.get(`${baseUrl}/games`)
+            .then((response)=>{
+            setGames(response.data)
+        })
+        }
+    )
+
+
   return (
     <div className="App">
-        <h2>Game Shop</h2>
-      <div className="register-container">
-          <input className="register-input" type="text" name="name" placeholder="name" onChange={handleChangeValues} />
-          <input className="register-input" type="text" name="cost" placeholder="cost" onChange={handleChangeValues} />
-          <input className="register-input" type="text" name="category" placeholder="category" onChange={handleChangeValues} />
-          <button onClick={handleClickButton}>Register</button>
+
+      <div className="container">
+          <h1 className="title">Game Shop</h1>
+          <div className="register-box">
+              <h3>Add a Game</h3>
+              <input className="register-input" type="text" name="name" placeholder="Title" onChange={handleChangeValues} />
+              <input className="register-input" type="text" name="cost" placeholder="Cost" onChange={handleChangeValues} />
+              <input className="register-input" type="text" name="category" placeholder="Category" onChange={handleChangeValues} />
+              <button className="register-button" onClick={handleClickButton}>Add</button>
+          </div>
+          <br/>
+          <div className="cards">
+              {typeof games !== 'undefined' &&
+                  games.map((game) => {
+                      return <Card
+                          key={game.idgames}
+                          id={game.idgames}
+                          name={game.name}
+                          cost={game.cost}
+                          category={game.category}
+
+                      >
+                      </Card>;
+                  })}
+          </div>
+
       </div>
     </div>
   )

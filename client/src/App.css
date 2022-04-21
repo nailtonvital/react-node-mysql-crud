@@ -2,3 +2,41 @@
   margin: 0px;
   padding: 0px;
 }
+body{
+  font-family: Montserrat, sans-serif;
+}
+.container{
+  margin-inline: auto;
+  margin-inline-start: 80px;
+  margin-inline-end: 80px;
+}
+.title {
+  margin-top: 20px;
+}
+
+.register-box{
+  margin-top: 20px;
+  align-items: center;
+
+}
+
+.register-input, .register-button{
+  margin-top: 5px;
+  margin-right: 5px;
+  padding-inline: 5px;
+
+  border-style: solid;
+  border-radius: 8px;
+}
+
+.register-input{
+  height: 30px;
+  width: 268px;
+}
+
+.register-button{
+  height: 35px;
+  width: 100px;
+}
+
+
