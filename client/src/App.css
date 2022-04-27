@@ -17,7 +17,8 @@ body{
 .register-box{
   margin-top: 20px;
   align-items: center;
-
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px,1fr));
 }
 
 .register-input, .register-button{
@@ -31,7 +32,6 @@ body{
 
 .register-input{
   height: 30px;
-  width: 268px;
 }
 
 .register-button{
