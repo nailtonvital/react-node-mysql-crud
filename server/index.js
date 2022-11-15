@@ -6,8 +6,8 @@ const cors = require('cors');
 const db = mysql.createPool({
     host: "localhost",
     user: "root",
-    password: "nailton123",
-    database: "crudgames",
+    password: "1002",
+    database: "DDb",
 });
 
 server.use(express.json());
